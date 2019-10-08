@@ -1,0 +1,2 @@
+# shell scripts -> EOL = lf
+gradlew text eol=lf
