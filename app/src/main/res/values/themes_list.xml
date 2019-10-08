@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RECOMMANDATION : https://developer.android.com/guide/topics/ui/look-and-feel/darktheme#changing_themes_in-app -->
+    <string-array name="themes_list">
+        <item>@string/choice_light_mode</item>
+        <item>@string/choice_dark_mode</item>
+        <item>@string/choice_system_mode</item>
+    </string-array>
+</resources>

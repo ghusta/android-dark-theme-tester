@@ -1,0 +1,9 @@
+= android-dark-theme-tester
+
+🌗 Android app to experiment the dark theme
+
+[![Build Status](https://travis-ci.org/ghusta/android-dark-theme-tester.svg?branch=master)](https://travis-ci.org/ghusta/android-dark-theme-tester) [![GitHub release](https://img.shields.io/github/release/ghusta/android-dark-theme-tester.svg)](https://github.com/ghusta/android-dark-theme-tester/releases)
+
+== Overview
+
+Android app to test dark mode.

@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">DarkTheme Tester</string>
     <string name="action_settings">Settings</string>
+    <string name="action_choose_theme">Choose theme</string>
+
+    <string name="choice_light_mode">Light</string>
+    <string name="choice_dark_mode">Dark</string>
+    <string name="choice_system_mode">Set by Battery Saver</string>
+
 </resources>
