@@ -1,7 +1,9 @@
 package fr.husta.android.dark_theme_tester
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -13,9 +15,12 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.util.*
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
+
+    val PROJECT_GITHUB_URL = "https://github.com/ghusta/android-dark-theme-tester"
 
     val KEY_PREF_SAVED_DARK_MODE = "last_dark_mode"
 
@@ -90,6 +95,10 @@ class MainActivity : AppCompatActivity() {
 
                 true
             }
+            R.id.action_open_github_project -> {
+                clickContribute()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -113,6 +122,19 @@ class MainActivity : AppCompatActivity() {
 
     fun getSdkVersion(): Int {
         return Build.VERSION.SDK_INT
+    }
+
+    fun clickContribute() {
+        openUrlInBrowser(Uri.parse(PROJECT_GITHUB_URL))
+    }
+
+    fun openUrlInBrowser(uri: Uri) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Objects.requireNonNull(uri)
+        }
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+
+        startActivity(intent)
     }
 
 }

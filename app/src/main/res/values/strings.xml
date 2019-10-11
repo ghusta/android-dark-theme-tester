@@ -2,6 +2,7 @@
     <string name="app_name">DarkTheme Tester</string>
     <string name="action_settings">Settings</string>
     <string name="action_choose_theme">Choose theme</string>
+    <string name="action_open_github_project">Let me see the source code</string>
 
     <string name="choice_light_mode">Light</string>
     <string name="choice_dark_mode">Dark</string>
