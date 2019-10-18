@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -19,6 +20,8 @@ import java.util.*
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
+
+    private val TAG = "MainActivity"
 
     val PROJECT_GITHUB_URL = "https://github.com/ghusta/android-dark-theme-tester"
 
@@ -81,7 +84,6 @@ class MainActivity : AppCompatActivity() {
                             editor?.putInt(KEY_PREF_SAVED_DARK_MODE, selectedTheme)
                             editor?.apply()
 
-
                             // applyTheme(selectedTheme)
                             dialog.dismiss()
                         })
@@ -103,7 +105,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun applyTheme(theme: Int) {
-        Toast.makeText(this, "Which = ${theme}", Toast.LENGTH_SHORT).show()
+        // Toast.makeText(this, "Which = ${theme}", Toast.LENGTH_SHORT).show()
+        Log.d(TAG, "applyTheme() : which = ${theme}")
 
         // See https://developer.android.com/guide/topics/ui/look-and-feel/darktheme#changing_themes_in-app
         when (selectedTheme) {
@@ -111,9 +114,8 @@ class MainActivity : AppCompatActivity() {
             1 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             2 -> if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
-            } else
-            // API 29+
-            {
+            } else {
+                // API 29+
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
             }
         }
