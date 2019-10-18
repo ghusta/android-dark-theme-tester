@@ -7,4 +7,15 @@ image:https://img.shields.io/github/release/ghusta/android-dark-theme-tester.svg
 
 == Overview
 
-Android app to test dark mode.
+Android app to test dark mode on your device.
+
+It includes **Android 10** support.
+The dark theme is also available on previous Android versions, but it is deeper integrated in Android 10.
+
+When the device enters https://support.google.com/android/answer/9079240?hl=en[battery saver mode], it can automatically switch to dark mode.
+
+=== References
+
+* https://developer.android.com/guide/topics/ui/look-and-feel/darktheme[Guide > Dark theme]
+* https://www.android.com/android-10/#q-dark-theme[Dark Theme feature in Android 10]
+* https://material.io/develop/android/theming/dark/[Material Design > Android > Dark Theme]
