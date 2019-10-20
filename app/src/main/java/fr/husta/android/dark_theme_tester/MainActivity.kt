@@ -36,12 +36,7 @@ class MainActivity : AppCompatActivity() {
         // read preferences at start
         this.preferences = getPreferences(Context.MODE_PRIVATE)
         // "Battery Saver" mode introduced in Android 5.0
-        val defaultTheme: Int
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            defaultTheme = 2
-        } else {
-            defaultTheme = 0
-        }
+        val defaultTheme = (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) 2 else 0)
         this.selectedTheme = this.preferences!!.getInt(KEY_PREF_SAVED_DARK_MODE, defaultTheme)
 
         super.onCreate(savedInstanceState)
