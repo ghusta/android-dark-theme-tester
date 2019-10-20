@@ -35,7 +35,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // read preferences at start
         this.preferences = getPreferences(Context.MODE_PRIVATE)
-        this.selectedTheme = this.preferences!!.getInt(KEY_PREF_SAVED_DARK_MODE, 2)
+        // "Battery Saver" mode introduced in Android 5.0
+        val defaultTheme: Int
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            defaultTheme = 2
+        } else {
+            defaultTheme = 0
+        }
+        this.selectedTheme = this.preferences!!.getInt(KEY_PREF_SAVED_DARK_MODE, defaultTheme)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
