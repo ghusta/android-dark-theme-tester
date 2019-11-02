@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         text_main.text =
             String.format(
-                "Version API : %s (Android %s)",
+                "API Version : %s (Android %s)",
                 Build.VERSION.SDK_INT,
                 Build.VERSION.RELEASE
             )
