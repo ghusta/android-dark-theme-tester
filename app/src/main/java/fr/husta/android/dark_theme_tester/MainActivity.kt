@@ -21,11 +21,12 @@ import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        const val PROJECT_GITHUB_URL = "https://github.com/ghusta/android-dark-theme-tester"
+        const val KEY_PREF_SAVED_DARK_MODE = "last_dark_mode"
+    }
+
     private val TAG = "MainActivity"
-
-    val PROJECT_GITHUB_URL = "https://github.com/ghusta/android-dark-theme-tester"
-
-    val KEY_PREF_SAVED_DARK_MODE = "last_dark_mode"
 
     private var preferences: SharedPreferences? = null
 
@@ -37,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         this.preferences = getPreferences(Context.MODE_PRIVATE)
         // "Battery Saver" mode introduced in Android 5.0
         val defaultTheme = (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) 2 else 0)
-        this.selectedTheme = this.preferences!!.getInt(KEY_PREF_SAVED_DARK_MODE, defaultTheme)
+        this.selectedTheme =
+            this.preferences!!.getInt(KEY_PREF_SAVED_DARK_MODE, defaultTheme)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
