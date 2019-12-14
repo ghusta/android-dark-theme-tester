@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
+import android.os.Build.VERSION_CODES.*
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -37,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         // read preferences at start
         this.preferences = getPreferences(Context.MODE_PRIVATE)
         // "Battery Saver" mode introduced in Android 5.0
-        val defaultTheme = (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) 2 else 0)
+        val defaultTheme =
+            (if (Build.VERSION.SDK_INT >= LOLLIPOP) Theme.BATTERY_SAVER_OR_SYSTEM_DEFAULT else Theme.LIGHT)
         this.selectedTheme =
             this.preferences!!.getInt(KEY_PREF_SAVED_DARK_MODE, defaultTheme)
 
@@ -114,9 +116,9 @@ class MainActivity : AppCompatActivity() {
 
         // See https://developer.android.com/guide/topics/ui/look-and-feel/darktheme#changing_themes_in-app
         when (selectedTheme) {
-            0 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            1 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            2 -> if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+            Theme.LIGHT -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            Theme.DARK -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            Theme.BATTERY_SAVER_OR_SYSTEM_DEFAULT -> if (Build.VERSION.SDK_INT <= P) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
             } else {
                 // API 29+
@@ -134,7 +136,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openUrlInBrowser(uri: Uri) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= KITKAT) {
             Objects.requireNonNull(uri)
         }
         val intent = Intent(Intent.ACTION_VIEW, uri)
