@@ -14,13 +14,18 @@ The dark theme is also available on previous Android versions, but it is deeper 
 
 When the device enters https://support.google.com/android/answer/9079240?hl=en[battery saver mode], it can automatically switch to dark mode.
 
-=== References
+== Notes
+
+In Android 10 and higher, on https://en.wikipedia.org/wiki/Google_Pixel[Pixel devices], selecting the Battery Saver mode enables Dark theme at the same time. +
+Other OEMs **may or may not support this behavior** (_like OnePlus for example_).
+
+== References
 
 * https://developer.android.com/guide/topics/ui/look-and-feel/darktheme[Guide > Dark theme]
 * https://www.android.com/android-10/#q-dark-theme[Dark Theme feature in Android 10]
 * https://material.io/develop/android/theming/dark/[Material Design > Android > Dark Theme]
 
-=== Download
+== Download
 
 image:https://play.google.com/intl/en_gb/badges/static/images/badges/en_badge_web_generic.png["Get it on Google Play", link="https://play.google.com/store/apps/details?id=fr.husta.android.dark_theme_tester"]
 
