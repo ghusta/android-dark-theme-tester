@@ -24,6 +24,7 @@ Other OEMs **may or may not support this behavior** (_like OnePlus for example_)
 * https://developer.android.com/guide/topics/ui/look-and-feel/darktheme[Guide > Dark theme]
 * https://www.android.com/android-10/#q-dark-theme[Dark Theme feature in Android 10]
 * https://material.io/develop/android/theming/dark/[Material Design > Android > Dark Theme]
+* 🎥 https://www.youtube.com/watch?v=f3ol75NTud0[Dark Mode] (YouTube)
 
 == Download
 
