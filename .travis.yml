@@ -12,7 +12,7 @@ android:
     - build-tools-30.0.0-rc1
 
     # The SDK version used to compile your project
-    - android-30
+    - android-R
 
 stages:
   - compile
