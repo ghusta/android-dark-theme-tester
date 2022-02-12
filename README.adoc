@@ -2,7 +2,6 @@
 
 🌒 Android app to experiment the dark theme
 
-image:https://travis-ci.org/ghusta/android-dark-theme-tester.svg?branch=master["Build Status", link="https://travis-ci.org/ghusta/android-dark-theme-tester"]
 image:https://img.shields.io/github/release/ghusta/android-dark-theme-tester.svg["GitHub release", link="https://github.com/ghusta/android-dark-theme-tester/releases"]
 
 == Overview
