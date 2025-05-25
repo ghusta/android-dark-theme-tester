@@ -4,11 +4,11 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     namespace "fr.husta.android.dark_theme_tester"
-    compileSdkVersion 32
+    compileSdkVersion 33
     defaultConfig {
         applicationId "fr.husta.android.dark_theme_tester"
         minSdkVersion 19
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 5
         versionName "1.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
