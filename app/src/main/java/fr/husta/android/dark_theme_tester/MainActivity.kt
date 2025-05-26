@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
-import android.os.Build.VERSION_CODES.KITKAT
 import android.os.Build.VERSION_CODES.LOLLIPOP
 import android.os.Build.VERSION_CODES.P
 import android.os.Bundle
@@ -16,10 +15,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.edit
+import androidx.core.net.toUri
 import com.google.android.material.snackbar.Snackbar
 import fr.husta.android.dark_theme_tester.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.content_main.text_main
-import java.util.Objects
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
@@ -83,17 +83,17 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.action_choose_theme -> {
                 // create Dialog
-                val builder: AlertDialog.Builder? = this.let {
+                val builder: AlertDialog.Builder = this.let {
                     AlertDialog.Builder(it)
                 }
-                builder?.setTitle(R.string.action_choose_theme)
+                builder.setTitle(R.string.action_choose_theme)
                     ?.setSingleChoiceItems(R.array.themes_list, selectedTheme,
                         { dialog, which ->
                             selectedTheme = which
                             // backup preference
-                            val editor = preferences?.edit()
-                            editor?.putInt(KEY_PREF_SAVED_DARK_MODE, selectedTheme)
-                            editor?.apply()
+                            preferences?.edit {
+                                this.putInt(KEY_PREF_SAVED_DARK_MODE, selectedTheme)
+                            }
 
                             // applyTheme(selectedTheme)
                             dialog.dismiss()
@@ -102,8 +102,8 @@ class MainActivity : AppCompatActivity() {
                         dialog.dismiss()
                     })
 
-                val dialogThemeChooser = builder?.create()
-                dialogThemeChooser?.show()
+                val dialogThemeChooser = builder.create()
+                dialogThemeChooser.show()
 
                 true
             }
@@ -137,15 +137,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun clickContribute() {
-        openUrlInBrowser(Uri.parse(PROJECT_GITHUB_URL))
+        openUrlInBrowser(PROJECT_GITHUB_URL.toUri())
     }
 
     fun openUrlInBrowser(uri: Uri) {
-        if (Build.VERSION.SDK_INT >= KITKAT) {
-            Objects.requireNonNull(uri)
-        }
         val intent = Intent(Intent.ACTION_VIEW, uri)
-
         startActivity(intent)
     }
 
