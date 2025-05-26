@@ -9,7 +9,7 @@
 
         <item name="android:navigationBarColor" tools:targetApi="21">@color/colorPrimary</item>
 
-<!--        <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents.Dark</item>-->
+        <item name="actionBarPopupTheme">@style/AppTheme.PopupOverlay</item>
 <!--        <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.ActionBar.Surface</item>-->
     </style>
 
@@ -20,6 +20,6 @@
 
     <style name="AppTheme.AppBarOverlay" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="@style/ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="@style/ThemeOverlay.MaterialComponents.Light" />
 
 </resources>
