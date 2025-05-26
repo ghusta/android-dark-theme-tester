@@ -19,7 +19,6 @@ import androidx.core.content.edit
 import androidx.core.net.toUri
 import com.google.android.material.snackbar.Snackbar
 import fr.husta.android.dark_theme_tester.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.content_main.text_main
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
@@ -52,13 +51,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        text_main.text =
+        binding.includedContentMain.textMain.text =
             String.format(
                 "API Version : %s (Android %s)",
                 Build.VERSION.SDK_INT,
                 Build.VERSION.RELEASE
             )
-
 
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
