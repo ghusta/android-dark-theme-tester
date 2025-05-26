@@ -1,3 +1,11 @@
+# 1.1.0 (may 2025)
+
+- Android Views
+- Kotlin 2
+- Material Design 2
+- Upgrade to MDC 1.12.0
+- Target SDK is API 34 ([Android 14](https://developer.android.com/tools/releases/platforms#14))
+
 # 1.0 (nov 2019)
 
 - Android Views
