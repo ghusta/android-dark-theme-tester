@@ -17,9 +17,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
-import java.util.*
+import fr.husta.android.dark_theme_tester.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.content_main.text_main
+import java.util.Objects
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val TAG = "MainActivity"
+
+    private lateinit var binding: ActivityMainBinding
 
     private var preferences: SharedPreferences? = null
 
@@ -46,8 +48,9 @@ class MainActivity : AppCompatActivity() {
             this.preferences!!.getInt(KEY_PREF_SAVED_DARK_MODE, defaultTheme)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
         text_main.text =
             String.format(
@@ -57,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             )
 
 
-        fab.setOnClickListener { view ->
+        binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
