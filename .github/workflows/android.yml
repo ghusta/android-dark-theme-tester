@@ -26,6 +26,9 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
+      - name: Display APK files
+        run: ls -lh app/build/outputs/apk/release/*.apk
+
   bundle-for-play-store:
     name: Bundle for Play Store
     runs-on: ubuntu-latest
@@ -49,4 +52,4 @@ jobs:
         run: ./gradlew bundleRelease
 
       - name: Display AAB files
-        run: ls -l app/build/outputs/bundle/release/*.aab
+        run: ls -lh app/build/outputs/bundle/release/*.aab
