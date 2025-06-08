@@ -8,8 +8,8 @@ android {
         applicationId "fr.husta.android.dark_theme_tester"
         minSdkVersion 19
         targetSdkVersion 34
-        versionCode 5
-        versionName "1.1.0"
+        versionCode 6
+        versionName "1.1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "dark_theme_tester-$versionName")
     }
