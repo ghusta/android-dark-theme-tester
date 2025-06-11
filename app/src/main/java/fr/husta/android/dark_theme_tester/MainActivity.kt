@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        binding.includedContentMain.textMain.text =
+        binding.includedContentMain.textApiInfo.text =
             String.format(
                 "API Version : %s (Android %s)",
                 Build.VERSION.SDK_INT,
