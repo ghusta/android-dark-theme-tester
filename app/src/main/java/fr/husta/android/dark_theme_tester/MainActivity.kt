@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
-import android.os.Build.VERSION_CODES.LOLLIPOP
 import android.os.Build.VERSION_CODES.P
 import android.os.Bundle
 import android.util.Log
@@ -41,8 +40,7 @@ class MainActivity : AppCompatActivity() {
         // read preferences at start
         this.preferences = getPreferences(Context.MODE_PRIVATE)
         // "Battery Saver" mode introduced in Android 5.0
-        val defaultTheme =
-            (if (Build.VERSION.SDK_INT >= LOLLIPOP) Theme.BATTERY_SAVER_OR_SYSTEM_DEFAULT else Theme.LIGHT)
+        val defaultTheme = Theme.BATTERY_SAVER_OR_SYSTEM_DEFAULT
         this.selectedTheme =
             this.preferences!!.getInt(KEY_PREF_SAVED_DARK_MODE, defaultTheme)
 
@@ -51,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        binding.includedContentMain.textMain.text =
+        binding.includedContentMain.textApiInfo.text =
             String.format(
                 "API Version : %s (Android %s)",
                 Build.VERSION.SDK_INT,

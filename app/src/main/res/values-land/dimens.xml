@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="fab_margin">48dp</dimen>
+    <dimen name="cardview_top_margin">32dp</dimen>
+</resources>

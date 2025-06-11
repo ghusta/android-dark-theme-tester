@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.DarkThemeTester" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+
+        <!-- Used by style "Widget.Material3.FloatingActionButton.Primary" -->
+        <item name="colorPrimaryContainer">@color/colorPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/colorOnPrimaryContainer</item>
+
+        <!-- Used by style "Widget.Material3.FloatingActionButton.Secondary" -->
+        <item name="colorSecondaryContainer">@color/colorSecondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/colorOnSecondaryContainer</item>
+    </style>
+
+    <!-- Don't define colors there, as Theme in values-v23/themes.xml inherits "Base.Theme.DarkThemeTester" -->
+    <style name="Theme.DarkThemeTester" parent="Base.Theme.DarkThemeTester" />
+</resources>
