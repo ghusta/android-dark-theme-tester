@@ -1,3 +1,10 @@
+# 2.0.0 (june 2025)
+
+- Android Views
+- Kotlin 2
+- Material Design 3
+- Target SDK is API 35 ([Android 15](https://developer.android.com/tools/releases/platforms#15))
+
 # 1.1.0 (may 2025)
 
 - Android Views
