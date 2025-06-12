@@ -11,8 +11,8 @@ android {
         applicationId = "fr.husta.android.dark_theme_tester"
         minSdk = 21
         targetSdk = 35
-        versionCode = 10
-        versionName = "2.0.0"
+        versionCode = 20
+        versionName = "3.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
