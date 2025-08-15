@@ -1,5 +1,6 @@
 package fr.husta.android.dark_theme_tester
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,12 +11,20 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.content.edit
 import androidx.core.net.toUri
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
 import com.google.android.material.snackbar.Snackbar
 import fr.husta.android.dark_theme_tester.databinding.ActivityMainBinding
 import kotlin.properties.Delegates
@@ -33,7 +42,8 @@ class MainActivity : AppCompatActivity() {
 
     private var preferences: SharedPreferences? = null
 
-    private var selectedTheme: Int by Delegates.observable(-1,
+    private var selectedTheme: Int by Delegates.observable(
+        -1,
         { property, oldValue, newValue -> applyTheme(newValue) })
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +53,10 @@ class MainActivity : AppCompatActivity() {
         val defaultTheme = Theme.BATTERY_SAVER_OR_SYSTEM_DEFAULT
         this.selectedTheme =
             this.preferences!!.getInt(KEY_PREF_SAVED_DARK_MODE, defaultTheme)
+
+        // https://developer.android.com/develop/ui/views/layout/edge-to-edge
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
+        enableEdgeToEdge()
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -56,6 +70,39 @@ class MainActivity : AppCompatActivity() {
                 Build.VERSION.RELEASE
             )
 
+        ViewCompat.setOnApplyWindowInsetsListener(binding.appBarLayout) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Apply the insets as a margin to the view. This solution sets
+            // only the bottom, left, and right dimensions, but you can apply whichever
+            // insets are appropriate to your layout. You can also update the view padding
+            // if that's more appropriate.
+            view.updatePadding(
+                left = insets.left,
+                top = insets.top,
+                right = insets.right,
+            )
+            // Return CONSUMED if you don't want the window insets to keep passing
+            // down to descendant views.
+            WindowInsetsCompat.CONSUMED
+        }
+
+        val originalFabMargin = resources.getDimensionPixelSize(R.dimen.fab_margin)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.fab) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Apply the insets as a margin to the view. This solution sets
+            // only the bottom, left, and right dimensions, but you can apply whichever
+            // insets are appropriate to your layout. You can also update the view padding
+            // if that's more appropriate.
+            view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                leftMargin = insets.left
+                bottomMargin = insets.bottom + originalFabMargin
+                rightMargin = insets.right + originalFabMargin
+            }
+            // Return CONSUMED if you don't want the window insets to keep passing
+            // down to descendant views.
+            WindowInsetsCompat.CONSUMED
+        }
+
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAnchorView(R.id.fab)
@@ -64,9 +111,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
+
+        // Attempt to force icons in overflow menu (may not work on all themes/devices perfectly)
+        if (menu is MenuBuilder) {
+            menu.setOptionalIconsVisible(true)
+        }
+
         return true
     }
 
@@ -79,13 +133,15 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Nothing's happening here...", Toast.LENGTH_SHORT).show()
                 true
             }
+
             R.id.action_choose_theme -> {
                 // create Dialog
                 val builder: AlertDialog.Builder = this.let {
                     AlertDialog.Builder(it)
                 }
                 builder.setTitle(R.string.action_choose_theme)
-                    ?.setSingleChoiceItems(R.array.themes_list, selectedTheme,
+                    ?.setSingleChoiceItems(
+                        R.array.themes_list, selectedTheme,
                         { dialog, which ->
                             selectedTheme = which
                             // backup preference
@@ -105,10 +161,12 @@ class MainActivity : AppCompatActivity() {
 
                 true
             }
+
             R.id.action_open_github_project -> {
                 clickContribute()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -134,13 +192,22 @@ class MainActivity : AppCompatActivity() {
         return Build.VERSION.SDK_INT
     }
 
-    fun clickContribute() {
+    private fun clickContribute() {
         openUrlInBrowser(PROJECT_GITHUB_URL.toUri())
     }
 
-    fun openUrlInBrowser(uri: Uri) {
+    private fun openUrlInBrowser(uri: Uri) {
         val intent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(intent)
+    }
+
+    private fun hideSystemBars() {
+        val windowInsetsController =
+            WindowCompat.getInsetsController(window, window.decorView)
+        // Hide the system bars.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
+        }
     }
 
 }

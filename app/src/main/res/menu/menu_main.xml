@@ -12,10 +12,12 @@
 
     <item
         android:id="@+id/action_choose_theme"
+        android:icon="@drawable/ic_palette_24"
         android:title="@string/action_choose_theme" />
 
     <item
         android:id="@+id/action_open_github_project"
+        android:icon="@drawable/ic_code_24"
         android:title="@string/action_open_github_project" />
 
 </menu>
