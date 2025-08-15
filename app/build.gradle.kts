@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "fr.husta.android.dark_theme_tester"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "fr.husta.android.dark_theme_tester"
