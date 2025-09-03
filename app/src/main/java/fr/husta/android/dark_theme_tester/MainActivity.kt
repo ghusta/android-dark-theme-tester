@@ -11,11 +11,11 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.edit
 import androidx.core.net.toUri
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import fr.husta.android.dark_theme_tester.databinding.ActivityMainBinding
 import kotlin.properties.Delegates
@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
 
     private var preferences: SharedPreferences? = null
 
-    private var selectedTheme: Int by Delegates.observable(-1,
+    private var selectedTheme: Int by Delegates.observable(
+        -1,
         { property, oldValue, newValue -> applyTheme(newValue) })
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,13 +80,13 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Nothing's happening here...", Toast.LENGTH_SHORT).show()
                 true
             }
+
             R.id.action_choose_theme -> {
                 // create Dialog
-                val builder: AlertDialog.Builder = this.let {
-                    AlertDialog.Builder(it)
-                }
+                val builder = MaterialAlertDialogBuilder(this)
                 builder.setTitle(R.string.action_choose_theme)
-                    ?.setSingleChoiceItems(R.array.themes_list, selectedTheme,
+                    .setSingleChoiceItems(
+                        R.array.themes_list, selectedTheme,
                         { dialog, which ->
                             selectedTheme = which
                             // backup preference
@@ -96,7 +97,7 @@ class MainActivity : AppCompatActivity() {
                             // applyTheme(selectedTheme)
                             dialog.dismiss()
                         })
-                    ?.setNegativeButton(android.R.string.cancel, { dialog, id ->
+                    .setNegativeButton(android.R.string.cancel, { dialog, id ->
                         dialog.dismiss()
                     })
 
@@ -105,10 +106,12 @@ class MainActivity : AppCompatActivity() {
 
                 true
             }
+
             R.id.action_open_github_project -> {
                 clickContribute()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
