@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "fr.husta.android.dark_theme_tester"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 35
         versionCode = 20
         versionName = "2.1.0"
